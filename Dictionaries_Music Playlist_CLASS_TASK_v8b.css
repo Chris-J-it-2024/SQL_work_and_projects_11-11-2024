@@ -1,0 +1,167 @@
+/* Basic resets and layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    background: linear-gradient(135deg, #000000, #1e1e1e);
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Heading styling */
+h1 {
+    font-size: 2.5rem;
+    color: #00ff00;
+    text-shadow: 2px 2px 10px rgba(0, 255, 0, 0.7);
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+form {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #00ff00;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+form input, form button {
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+form input:focus, form button:hover {
+    background: #00ff00;
+    color: #000;
+    border-color: #fff;
+}
+
+/* Playlist button */
+button {
+    background: #444;
+    color: #fff;
+    padding: 10px 20px;
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #00ff00;
+    color: #000;
+}
+
+/* Playlist display */
+#playlist {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #00ff00;
+    margin-top: 30px;
+}
+
+.song {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border: 1px solid #00ff00;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.song p {
+    margin: 5px 0;
+}
+
+.song button {
+    background: #ff0000;
+    color: #fff;
+    padding: 8px 15px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.song button:hover {
+    background: #fff;
+    color: #ff0000;
+    border-color: #ff0000;
+}
+
+hr {
+    border: 1px solid #00ff00;
+    margin-top: 10px;
+}
+
+/* Winamp-like styling for body */
+body.winamp {
+    background: #111;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+}
+
+.winamp h1 {
+    font-size: 2.5rem;
+    color: #00ff00;
+    text-shadow: 2px 2px 10px rgba(0, 255, 0, 0.7);
+    margin-bottom: 20px;
+}
+
+/* Add a border around the player */
+.winamp .container {
+    width: 100%;
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 5px solid #00ff00;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+}
+
+/* Add a neon glow around form elements */
+input, button {
+    border-radius: 10px;
+    border: 2px solid #00ff00;
+    background: #222;
+    color: #fff;
+    padding: 12px;
+    margin: 5px 0;
+    font-size: 1rem;
+    text-align: center;
+}
+
+input:focus, button:hover {
+    background: #00ff00;
+    color: black;
+    border-color: #fff;
+}
+
+/* Playlist song entries */
+.song {
+    border: 2px solid #00ff00;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+    background

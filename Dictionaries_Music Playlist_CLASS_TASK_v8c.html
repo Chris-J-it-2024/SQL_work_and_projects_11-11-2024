@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Playlist</title>
+    <link rel="stylesheet" type="text/css" href="Dictionaries_Music Playlist_CLASS_TASK_v8c.css">
+    <script>
+        async function viewPlaylist() {
+            const response = await fetch('/view_playlist');
+            const data = await response.json();
+            const playlistDiv = document.getElementById('playlist');
+            playlistDiv.innerHTML = '';
+            
+            if (typeof data === 'string') {
+                playlistDiv.innerHTML = data;
+                return;
+            }
+
+            // Save the playlist data for later reference
+            window.playlist = data;
+            
+            data.forEach((song, index) => {
+                playlistDiv.innerHTML += `
+                    <div class="song" id="song-${index}">
+                        <p>Title: ${song.title}</p>
+                        <p>Artist: ${song.artist}</p>
+                        <p>Genre: ${song.genre}</p>
+                        <button onclick="deleteSong(${index})">Delete Song</button>
+                        <hr>
+                    </div>
+                `;
+            });
+        }
+
+        async function addSong(event) {
+            event.preventDefault();
+            const formData = {
+                title: document.getElementById('title').value,
+                artist: document.getElementById('artist').value,
+                genre: document.getElementById('genre').value
+            };
+
+            try {
+                const response = await fetch('/add_song', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                const result = await response.json();
+                alert(result.message || result.error);
+                if (response.ok) {
+                    viewPlaylist();
+                    event.target.reset();
+                }
+            } catch (error) {
+                alert('Error adding song');
+            }
+        }
+
+        // Delete a song from the playlist
+        async function deleteSong(index) {
+            const song = window.playlist[index];
+
+            try {
+                const response = await fetch('/delete_song', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ title: song.title, artist: song.artist })
+                });
+                const result = await response.json();
+                alert(result.message || result.error);
+                if (response.ok) {
+                    // Remove song from the UI
+                    document.getElementById(`song-${index}`).remove();
+                }
+            } catch (error) {
+                alert('Error deleting song');
+            }
+        }
+
+        // Skip to the next song in the playlist (for demo purposes, we just alert the next song)
+        function skipToNext() {
+            const nextSong = window.playlist[1]; // Assuming the next song is the second in the list
+            if (nextSong) {
+                alert(`Skipping to next track: ${nextSong.title} by ${nextSong.artist}`);
+            } else {
+                alert('No more songs in the playlist.');
+            }
+        }
+    </script>
+</head>
+<body class="winamp">
+    <h1>Music Playlist</h1>
+    
+    <div class="container">
+        <form onsubmit="addSong(event)">
+            <input type="text" id="title" placeholder="Song Title" required><br>
+            <input type="text" id="artist" placeholder="Artist" required><br>
+            <input type="text" id="genre" placeholder="Genre" required><br>
+            <button type="submit">Add Song</button>
+        </form>
+
+        <button onclick="viewPlaylist()">View Playlist</button>
+        <button onclick="skipToNext()">Skip to Next Track</button>
+        
+        <div id="playlist"></div>
+    </div>
+</body>
+</html>

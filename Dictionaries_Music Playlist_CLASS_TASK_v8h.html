@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winamp Player</title>
+    <link rel="stylesheet" href="Dictionaries_Music Playlist_CLASS_TASK_v8g.css">
+</head>
+<body>
+    <div class="container winamp">
+        <h1>Krysamp Music Player</h1>
+        <form id="addSongForm">
+            <input type="text" id="songTitle" placeholder="Enter song title" required>
+            <input type="text" id="songArtist" placeholder="Enter artist name" required>
+            <button type="submit">Add Song</button>
+        </form>
+        <div class="button-container">
+            <div class="button-row">
+                <button id="playPause" class="play-pause-button">Play</button>
+                <button id="stop" class="stop-button">Stop</button>
+            </div>
+            <div class="button-row">
+                <button id="prevTrack" class="prev-button">Skip to Previous Track</button>
+                <button id="nextTrack" class="next-button">Skip to Next Track</button>
+            </div>
+            <div class="button-row">
+                <button id="nextPlaylist" class="next-button">Next Playlist</button>
+                <button id="deleteTrack" class="delete-button">Delete Track</button>
+                <button id="addTrack" class="add-button">Add Track</button>
+            </div>
+            <div class="button-row">
+                <select id="colorScheme" class="color-scheme-select">
+                    <option value="normal">Normal</option>
+                    <option value="dark">Dark</option>
+                    <option value="blue">Blue</option>
+                    <option value="gold">Gold</option>
+                    <option value="red">Red</option>
+                    <option value="cream">Cream</option>
+                    <option value="light-grey">Light Grey</option>
+                </select>
+            </div>
+        </div>
+        <div id="playlist">
+            <h3>Current Playlist:</h3>
+            <div id="songList"></div>
+        </div>
+    </div>
+    <script src="Dictionaries_Music Playlist_CLASS_TASK_v8g.js"></script>
+</body>
+</html>

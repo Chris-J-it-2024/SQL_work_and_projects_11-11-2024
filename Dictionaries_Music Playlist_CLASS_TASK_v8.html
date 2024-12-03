@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Playlist</title>
+    <link rel="stylesheet" type="text/css" href="Dictionaries_Music Playlist_CLASS_TASK_v8.css">
+    <script>
+        async function viewPlaylist() {
+            const response = await fetch('/view_playlist');
+            const data = await response.json();
+            const playlistDiv = document.getElementById('playlist');
+            playlistDiv.innerHTML = '';
+            
+            if (typeof data === 'string') {
+                playlistDiv.innerHTML = data;
+                return;
+            }
+            
+            data.forEach(song => {
+                playlistDiv.innerHTML += `
+                    <div class="song">
+                        <p>Title: ${song.title}</p>
+                        <p>Artist: ${song.artist}</p>
+                        <p>Genre: ${song.genre}</p>
+                        <hr>
+                    </div>
+                `;
+            });
+        }
+
+        async function addSong(event) {
+            event.preventDefault();
+            const formData = {
+                title: document.getElementById('title').value,
+                artist: document.getElementById('artist').value,
+                genre: document.getElementById('genre').value
+            };
+
+            try {
+                const response = await fetch('/add_song', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                const result = await response.json();
+                alert(result.message || result.error);
+                if (response.ok) {
+                    viewPlaylist();
+                    event.target.reset();
+                }
+            } catch (error) {
+                alert('Error adding song');
+            }
+        }
+    </script>
+</head>
+<body class="winamp">
+    <h1>Music Playlist</h1>
+    
+    <div class="container">
+        <form onsubmit="addSong(event)">
+            <input type="text" id="title" placeholder="Song Title" required><br>
+            <input type="text" id="artist" placeholder="Artist" required><br>
+            <input type="text" id="genre" placeholder="Genre" required><br>
+            <button type="submit">Add Song</button>
+        </form>
+
+        <button onclick="viewPlaylist()">View Playlist</button>
+        
+        <div id="playlist"></div>
+    </div>
+</body>
+</html>

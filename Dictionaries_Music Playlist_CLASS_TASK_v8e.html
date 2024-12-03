@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winamp Player</title>
+    <link rel="stylesheet" href="Dictionaries_Music Playlist_CLASS_TASK_v8e.css">
+</head>
+<body>
+    <div class="container winamp">
+        <h1>Krysamp Music Player</h1>
+
+        <!-- Form to add a song -->
+        <form id="addSongForm">
+            <input type="text" id="songTitle" placeholder="Enter song title" required>
+            <input type="text" id="songArtist" placeholder="Enter artist name" required>
+            <button type="submit">Add Song</button>
+        </form>
+
+        <!-- Button container for controls -->
+        <div class="button-container">
+            <!-- First row: Play/Pause & Stop buttons -->
+            <div class="button-row">
+                <button id="playPause" class="play-pause-button">Play</button>
+                <button id="stop" class="stop-button">Stop</button>
+            </div>
+
+            <!-- Second row: Skip Previous & Skip Next buttons -->
+            <div class="button-row">
+                <button id="prevTrack" class="prev-button">Skip to Previous Track</button>
+                <button id="nextTrack" class="next-button">Skip to Next Track</button>
+            </div>
+
+            <!-- Third row: Playlist options buttons -->
+            <div class="button-row">
+                <button id="nextPlaylist" class="next-button">Next Playlist</button>
+                <button id="deleteTrack" class="delete-button">Delete Track</button>
+                <button id="addTrack" class="add-button">Add Track</button>
+            </div>
+        </div>
+
+        <!-- Playlist display -->
+        <div id="playlist">
+            <h3>Current Playlist:</h3>
+            <div id="songList"></div>
+        </div>
+    </div>
+
+    <script>
+        const addSongForm = document.getElementById('addSongForm');
+        const songTitleInput = document.getElementById('songTitle');
+        const songArtistInput = document.getElementById('songArtist');
+        const songList = document.getElementById('songList');
+        const prevTrackButton = document.getElementById('prevTrack');
+        const playPauseButton = document.getElementById('playPause');
+        const nextTrackButton = document.getElementById('nextTrack');
+        const nextPlaylistButton = document.getElementById('nextPlaylist');
+        const stopButton = document.getElementById('stop');
+        const deleteTrackButton = document.getElementById('deleteTrack');
+        const addTrackButton = document.getElementById('addTrack');
+        
+        let playlist = [];
+        let currentSongIndex = 0;
+        let isPlaying = false;
+
+        function updatePlaylist() {
+            songList.innerHTML = '';
+            playlist.forEach((song, index) => {
+                const songItem = document.createElement('div');
+                songItem.classList.add('song');
+                songItem.innerHTML = `
+                    <p>${song.title} - ${song.artist}</p>
+                    <button class="deleteSong" data-index="${index}">Delete</button>
+                `;
+                songList.appendChild(songItem);
+            });
+        }
+
+        function togglePlayPause() {
+            if (isPlaying) {
+                playPauseButton.textContent = 'Play';
+                isPlaying = false;
+            } else {
+                playPauseButton.textContent = 'Pause';
+                isPlaying = true;
+            }
+        }
+
+        function stopPlayback() {
+            isPlaying = false;
+            playPauseButton.textContent = 'Play';
+        }
+
+        function nextTrack() {
+            if (currentSongIndex < playlist.length - 1) {
+                currentSongIndex++;
+            } else {
+                currentSongIndex = 0;
+            }
+            console.log('Playing next track:', playlist[currentSongIndex].title);
+        }
+
+        function prevTrack() {
+            if (currentSongIndex > 0) {
+                currentSongIndex--;
+            } else {
+                currentSongIndex = playlist.length - 1;
+            }
+            console.log('Playing previous track:', playlist[currentSongIndex].title);
+        }
+
+        function nextPlaylist() {
+            console.log('Next playlist');
+        }
+
+        addSongForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const songTitle = songTitleInput.value;
+            const songArtist = songArtistInput.value;
+            playlist.push({ title: songTitle, artist: songArtist });
+            updatePlaylist();
+            songTitleInput.value = '';
+            songArtistInput.value = '';
+        });
+
+        songList.addEventListener('click', (event) => {
+            if (event.target.classList.contains('deleteSong')) {
+                const index = event.target.getAttribute('data-index');
+                playlist.splice(index, 1);
+                updatePlaylist();
+            }
+        });
+
+        playPauseButton.addEventListener('click', togglePlayPause);
+        stopButton.addEventListener('click', stopPlayback);
+        nextTrackButton.addEventListener('click', nextTrack);
+        prevTrackButton.addEventListener('click', prevTrack);
+        nextPlaylistButton.addEventListener('click', nextPlaylist);
+    </script>
+</body>
+</html>
