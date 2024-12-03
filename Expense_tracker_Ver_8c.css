@@ -1,0 +1,128 @@
+/* CSS Variables for consistent theming */
+:root {
+    --primary_color: #0071ce;    /* Blue */
+    --secondary_color: #ffc220;  /* Yellow */ 
+    --background_color: #ffffff;
+    --text_color: #333333;
+    --border_color: #e0e0e0;
+}
+
+/* Base styles for the body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background_color);
+    color: var(--text_color);
+}
+
+/* Main container styling */
+.main_container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header styling */
+header {
+    background-color: var(--primary_color);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+/* Expense form container styling */
+.expense_form_container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+/* Form group styling */
+.form_group {
+    margin-bottom: 20px;
+}
+
+/* Label styling */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* Input and select field styling */
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border_color);
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Submit button styling */
+.submit_button {
+    background-color: var(--primary_color);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* Submit button hover effect */
+.submit_button:hover {
+    background-color: #005aa7;
+}
+
+/* Summary section styling */
+.summary_section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Total spending display styling */
+.total_spending {
+    background-color: var(--secondary_color);
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* Category summary styling */
+.category_summary {
+    margin-bottom: 30px;
+}
+
+/* Category item styling */
+.category_item {
+    padding: 10px;
+    border-bottom: 1px solid var(--border_color);
+}
+
+/* Expense list table styling */
+.expense_list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Table cell styling */
+.expense_list th, 
+.expense_list td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border_color);
+}
+
+/* Table header styling */
+.expense_list th {
+    background-color: var(--primary_color);
+    color: white;
+}

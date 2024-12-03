@@ -1,0 +1,76 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="Expense_tracker_Ver_8a.css">
+</head>
+<body>
+    <div class="main_container">
+        <!-- Header section with title and welcome message -->
+        <header>
+            <h1>Daily Expense Tracker</h1>
+            <p class="welcome_message">Track your spending, manage your budget</p>
+        </header>
+
+        <!-- Form container for adding new expenses -->
+        <div class="expense_form_container">
+            <h2>Add New Expense</h2>
+            <form id="expense_form">
+                <!-- Amount input field -->
+                <div class="form_group">
+                    <label for="amount_input">Amount ($):</label>
+                    <input type="number" id="amount_input" name="amount" min="0.01" step="0.01" required>
+                </div>
+                
+                <!-- Category selection dropdown -->
+                <div class="form_group">
+                    <label for="category_select">Category:</label>
+                    <select id="category_select" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="food">Food</option>
+                        <option value="transport">Transport</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Description input field -->
+                <div class="form_group">
+                    <label for="description_input">Description:</label>
+                    <input type="text" id="description_input" name="description" required>
+                </div>
+
+                <button type="submit" class="submit_button">Add Expense</button>
+            </form>
+        </div>
+
+        <!-- Summary section for displaying expense data -->
+        <div class="summary_section">
+            <h2>Expense Summary</h2>
+            <div class="total_spending">
+                <h3>Total Spent: <span id="total_amount">$0.00</span></h3>
+            </div>
+            <div class="category_summary" id="category_summary"></div>
+            <div class="expense_list">
+                <table id="expense_table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expense_list"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript file included at the end for better performance -->
+    <script src="Expense_tracker_Ver_8a.js"></script>
+</body>
+</html>
